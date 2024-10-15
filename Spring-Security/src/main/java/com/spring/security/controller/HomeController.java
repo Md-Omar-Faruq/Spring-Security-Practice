@@ -1,5 +1,6 @@
 package com.spring.security.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
 
     @GetMapping("/")
-    public String Home(){
-        return "Welcom To Spring Security";
+    public String Home(HttpServletRequest request){
+        return "Welcom To Spring Security: "+ request.getSession().getId();
     }
 
 }
