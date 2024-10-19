@@ -14,21 +14,19 @@ import org.springframework.stereotype.Service;
 public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserRepo repo;
+    private UserRepo userRepo;
 
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-        Users user = repo.findByUsername(username);
-
-        if (user==null) {
-            System.out.println("User 404");
-            throw new UsernameNotFoundException("User 404");
+        Users user = userRepo.findByUsername(username);
+        if (user == null) {
+            System.out.println("User Not Found");
+            throw new UsernameNotFoundException("user not found");
         }
+
         return new UserPrincipal(user);
     }
-
 }
 
 //@Service
